@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPL Akinator — Who's Your Player?</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --gold: #f59e0b;
+        --gold-light: #fcd34d;
+        --blue-deep: #020617;
+        --blue-mid: #0a1628;
+        --blue-card: rgba(255, 255, 255, 0.04);
+        --border: rgba(255, 255, 255, 0.08);
+        --text-muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent2: #818cf8;
+      }
+
+      body {
+        background: var(--blue-deep);
+        color: white;
+        font-family: "Rajdhani", sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ============================
+   BACKGROUND EFFECTS
+============================ */
+      .bg-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 50% at 20% 10%,
+            rgba(245, 158, 11, 0.07) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 60% 60% at 80% 90%,
+            rgba(56, 189, 248, 0.07) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 100% 40% at 50% 50%,
+            rgba(129, 140, 248, 0.04) 0%,
+            transparent 70%
+          );
+      }
+
+      .pitch-lines {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 80px,
+            rgba(255, 255, 255, 0.012) 80px,
+            rgba(255, 255, 255, 0.012) 81px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 80px,
+            rgba(255, 255, 255, 0.012) 80px,
+            rgba(255, 255, 255, 0.012) 81px
+          );
+      }
+
+      /* ============================
+   NAV
+============================ */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 48px;
+        background: rgba(2, 6, 23, 0.7);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 26px;
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, var(--gold), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-badge {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+        padding: 6px 16px;
+        border-radius: 40px;
+        letter-spacing: 1px;
+      }
+
+      /* ============================
+   HERO
+============================ */
+      .hero {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 24px 80px;
+        text-align: center;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+        border-radius: 40px;
+        padding: 8px 20px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--gold-light);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 36px;
+        animation: fadeSlideDown 0.8s ease both;
+      }
+
+      .hero-tag span {
+        width: 7px;
+        height: 7px;
+        background: var(--gold);
+        border-radius: 50%;
+        animation: blink 1.4s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.2;
+        }
+      }
+
+      .hero-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(64px, 10vw, 140px);
+        line-height: 0.9;
+        letter-spacing: 4px;
+        margin-bottom: 12px;
+        animation: fadeSlideDown 0.8s 0.1s ease both;
+      }
+
+      .hero-title .line1 {
+        display: block;
+        background: linear-gradient(90deg, #fff 30%, var(--text-muted));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-title .line2 {
+        display: block;
+        background: linear-gradient(
+          90deg,
+          var(--gold),
+          var(--gold-light),
+          var(--accent)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-sub {
+        font-size: clamp(16px, 2.5vw, 22px);
+        color: var(--text-muted);
+        max-width: 600px;
+        line-height: 1.7;
+        margin: 0 auto 56px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        animation: fadeSlideDown 0.8s 0.2s ease both;
+      }
+
+      /* ============================
+   NAME CARD
+============================ */
+      .name-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 32px;
+        padding: 48px 52px;
+        width: 100%;
+        max-width: 560px;
+        animation: fadeSlideUp 0.9s 0.3s ease both;
+        box-shadow:
+          0 0 80px rgba(245, 158, 11, 0.06),
+          0 0 0 1px rgba(245, 158, 11, 0.04);
+      }
+
+      .name-card::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 40px;
+        right: 40px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          var(--accent),
+          transparent
+        );
+        border-radius: 2px;
+      }
+
+      .card-label {
+        font-size: 13px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .card-heading {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 34px;
+        letter-spacing: 2px;
+        margin-bottom: 32px;
+        color: white;
+      }
+
+      .card-heading em {
+        font-style: normal;
+        background: linear-gradient(90deg, var(--gold), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .input-wrap {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .input-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        color: var(--text-muted);
+        pointer-events: none;
+      }
+
+      .name-input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1.5px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 18px 18px 18px 52px;
+        font-size: 18px;
+        font-family: "Rajdhani", sans-serif;
+        font-weight: 600;
+        color: white;
+        letter-spacing: 0.5px;
+        outline: none;
+        transition:
+          border-color 0.3s,
+          background 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .name-input::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+        font-weight: 400;
+      }
+
+      .name-input:focus {
+        border-color: rgba(245, 158, 11, 0.6);
+        background: rgba(245, 158, 11, 0.05);
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.08);
+      }
+
+      .start-btn {
+        width: 100%;
+        padding: 20px;
+        border: none;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #d97706, #f59e0b, #fcd34d);
+        color: #1a0a00;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 22px;
+        letter-spacing: 3px;
+        cursor: pointer;
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s,
+          filter 0.25s;
+        box-shadow: 0 8px 32px rgba(245, 158, 11, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .start-btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .start-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(245, 158, 11, 0.45);
+        filter: brightness(1.06);
+      }
+
+      .start-btn:hover::after {
+        opacity: 1;
+      }
+      .start-btn:active {
+        transform: translateY(0);
+      }
+
+      .error-msg {
+        display: none;
+        color: #fca5a5;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      /* ============================
+   HOW IT WORKS
+============================ */
+      .how-section {
+        position: relative;
+        z-index: 1;
+        padding: 80px 24px 100px;
+        text-align: center;
+      }
+
+      .section-tag {
+        font-size: 12px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .section-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(40px, 6vw, 70px);
+        letter-spacing: 3px;
+        margin-bottom: 16px;
+      }
+
+      .section-sub {
+        color: var(--text-muted);
+        font-size: 17px;
+        margin-bottom: 64px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+        max-width: 1100px;
+        margin: 0 auto 80px;
+      }
+
+      .step-card {
+        background: var(--blue-card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 36px 28px;
+        text-align: left;
+        transition:
+          transform 0.3s,
+          border-color 0.3s,
+          box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .step-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 0 0,
+          rgba(245, 158, 11, 0.05),
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .step-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(245, 158, 11, 0.2);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+      }
+
+      .step-card:hover::before {
+        opacity: 1;
+      }
+
+      .step-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 64px;
+        line-height: 1;
+        background: linear-gradient(
+          135deg,
+          rgba(245, 158, 11, 0.25),
+          rgba(245, 158, 11, 0.06)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 16px;
+      }
+
+      .step-icon {
+        font-size: 36px;
+        margin-bottom: 18px;
+        display: block;
+      }
+
+      .step-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 24px;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+        color: white;
+      }
+
+      .step-desc {
+        font-size: 15px;
+        color: var(--text-muted);
+        line-height: 1.7;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+      }
+
+      /* ============================
+   STATS STRIP
+============================ */
+      .stats-strip {
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.03);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 48px 24px;
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        flex-wrap: wrap;
+      }
+
+      .stat-item {
+        padding: 16px 52px;
+        text-align: center;
+        border-right: 1px solid var(--border);
+      }
+
+      .stat-item:last-child {
+        border-right: none;
+      }
+
+      .stat-val {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 52px;
+        letter-spacing: 2px;
+        background: linear-gradient(135deg, var(--gold), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-top: 8px;
+        font-weight: 600;
+      }
+
+      /* ============================
+   TECH BADGES
+============================ */
+      .tech-section {
+        position: relative;
+        z-index: 1;
+        padding: 64px 24px 100px;
+        text-align: center;
+      }
+
+      .badges {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        max-width: 700px;
+        margin: 28px auto 0;
+      }
+
+      .badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 22px;
+        border-radius: 40px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: var(--text-muted);
+        transition:
+          border-color 0.3s,
+          color 0.3s;
+      }
+
+      .badge:hover {
+        border-color: rgba(245, 158, 11, 0.3);
+        color: var(--gold-light);
+      }
+
+      .badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      /* ============================
+   FOOTER
+============================ */
+      footer {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 32px 24px;
+        border-top: 1px solid var(--border);
+        color: rgba(255, 255, 255, 0.2);
+        font-size: 13px;
+        letter-spacing: 1px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* ============================
+   ANIMATIONS
+============================ */
+      @keyframes fadeSlideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ============================
+   FLOATING CRICKET BALLS
+============================ */
+      .float-ball {
+        position: fixed;
+        width: 12px;
+        height: 12px;
+        background: rgba(245, 158, 11, 0.15);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 0;
+        animation: floatUp linear infinite;
+      }
+
+      @keyframes floatUp {
+        from {
+          transform: translateY(110vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 0.3;
+        }
+        to {
+          transform: translateY(-10vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* ============================
+   RESPONSIVE
+============================ */
+      @media (max-width: 700px) {
+        nav {
+          padding: 14px 20px;
+        }
+        .name-card {
+          padding: 36px 28px;
+        }
+        .stat-item {
+          padding: 16px 28px;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .stat-item:last-child {
+          border-bottom: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-layer"></div>
+    <div class="pitch-lines"></div>
+
+    <!-- Floating particles -->
+    <div
+      class="float-ball"
+      style="
+        left: 8%;
+        width: 8px;
+        height: 8px;
+        animation-duration: 14s;
+        animation-delay: 0s;
+      "
+    ></div>
+    <div
+      class="float-ball"
+      style="
+        left: 22%;
+        width: 14px;
+        height: 14px;
+        animation-duration: 18s;
+        animation-delay: 3s;
+        background: rgba(56, 189, 248, 0.12);
+      "
+    ></div>
+    <div
+      class="float-ball"
+      style="
+        left: 55%;
+        width: 10px;
+        height: 10px;
+        animation-duration: 12s;
+        animation-delay: 6s;
+      "
+    ></div>
+    <div
+      class="float-ball"
+      style="
+        left: 78%;
+        width: 6px;
+        height: 6px;
+        animation-duration: 20s;
+        animation-delay: 1s;
+        background: rgba(129, 140, 248, 0.15);
+      "
+    ></div>
+    <div
+      class="float-ball"
+      style="
+        left: 91%;
+        width: 12px;
+        height: 12px;
+        animation-duration: 16s;
+        animation-delay: 8s;
+      "
+    ></div>
+
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">🏏 IPL AKINATOR</div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="hero-title">
+        <span class="line1">CAN I READ</span>
+        <span class="line2">YOUR MIND?</span>
+      </h1>
+
+      <p class="hero-sub">
+        Think of any IPL cricket legend. My AI will ask smart questions and
+        deduce your player — powered by Gemini intelligence and probabilistic
+        reasoning.
+      </p>
+
+      <!-- NAME CARD -->
+      <div class="name-card">
+        <div class="card-label">Step 1 of 2 — Challenger Info</div>
+        <div class="card-heading">Enter Your <em>Name</em></div>
+
+        <div class="input-wrap">
+          <span class="input-icon">🏏</span>
+          <input
+            class="name-input"
+            type="text"
+            id="playerName"
+            placeholder="e.g. Rohit, Priya, Arjun..."
+            autocomplete="off"
+            maxlength="30"
+            onkeydown="if (event.key === 'Enter');"
+          />
+        </div>
+
+        <div class="error-msg" id="errorMsg">
+          ⚠️ Please enter your name to continue!
+        </div>
+
+        <button class="start-btn" onclick="launchGame()">
+          <a href="index.html">🚀 &nbsp; CHALLENGE THE AI</a>
+        </button>
+      </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+      <div class="stat-item">
+        <div class="stat-val">60+</div>
+        <div class="stat-label">IPL Players</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">8</div>
+        <div class="stat-label">Max Questions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">95%</div>
+        <div class="stat-label">Accuracy Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">2s</div>
+        <div class="stat-label">Avg Response</div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-section">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-title">FOUR SIMPLE STEPS</h2>
+      <p class="section-sub">No tricks. Pure AI deduction in real time.</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <span class="step-icon">🧠</span>
+          <div class="step-title">THINK OF A PLAYER</div>
+          <p class="step-desc">
+            Pick any IPL cricket icon in your mind — batter, bowler, or
+            allrounder. Keep it secret!
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <span class="step-icon">❓</span>
+          <div class="step-title">ANSWER QUESTIONS</div>
+          <p class="step-desc">
+            The AI asks smart yes/no questions using Bayesian probability to
+            narrow down the field.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <span class="step-icon">📊</span>
+          <div class="step-title">WATCH IT DEDUCE</div>
+          <p class="step-desc">
+            See real-time probability shifts, candidate rankings, and
+            Gemini-powered reasoning unfold live.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <span class="step-icon">🏆</span>
+          <div class="step-title">FINAL PREDICTION</div>
+          <p class="step-desc">
+            In under 8 questions, the AI reveals its final answer with full
+            player stats and confidence score.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      IPL AI AKINATOR &nbsp;·&nbsp; Probabilistic Inference Engine &nbsp;&nbsp;
+    </footer>
+
+    <script>
+      function launchGame() {
+        const input = document.getElementById("playerName");
+        const err = document.getElementById("errorMsg");
+        const name = input.value.trim();
+
+        if (!name) {
+          err.style.display = "block";
+          input.style.borderColor = "rgba(239,68,68,0.5)";
+          input.focus();
+          setTimeout(() => {
+            err.style.display = "none";
+            input.style.borderColor = "";
+          }, 2800);
+          return;
+        }
+
+        // Store name
+        sessionStorage.setItem("challengers_name", name);
+
+        // Button loading state
+        const btn = document.querySelector(".start-btn");
+        btn.innerHTML = "⏳ &nbsp; LOADING AI ENGINE...";
+        btn.style.opacity = "0.7";
+        btn.style.cursor = "not-allowed";
+
+        // Redirect after brief pause for effect
+        setTimeout(() => {
+          window.location.href = `index.html?player=${encodeURIComponent(name)}`;
+        }, 900);
+      }
+
+      // Animate steps on scroll
+      const cards = document.querySelectorAll(".step-card");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }, i * 120);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      cards.forEach((card) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(28px)";
+        card.style.transition =
+          "opacity 0.6s ease, transform 0.6s ease, border-color 0.3s, box-shadow 0.3s";
+        observer.observe(card);
+      });
+
+      // Ensure page starts at the top and auto-focus the name input without scrolling
+      if (window.history && window.history.scrollRestoration) {
+        window.history.scrollRestoration = "manual";
+      }
+
+      window.addEventListener("load", () => {
+        window.scrollTo(0, 0);
+        const input = document.getElementById("playerName");
+        if (input) {
+          try {
+            input.focus({ preventScroll: true });
+          } catch (err) {
+            input.focus();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
