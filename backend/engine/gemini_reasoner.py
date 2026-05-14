@@ -2,7 +2,7 @@ from google import genai
 
 
 client = genai.Client(
-    api_key="YOUR_GEMINI_API_KEY"
+    api_key="AIzaSyDRknSuXKdf-UVfhi9GdlVec-94gw3v-BI"
 )
 
 
