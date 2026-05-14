@@ -1,0 +1,272 @@
+{
+  "Glenn Gill": {
+    "image": "assets/players/glenn_gill.jpg",
+    "role": "All-rounder",
+    "teams": ["RCB"],
+    "titles": 3,
+    "description": "Highly talented cricketer with strong IPL presence.",
+    "runs": 590,
+    "strike_rate": 150.3
+  },
+  "Ishan du Plessis": {
+    "image": "assets/players/ishan_du_plessis.jpg",
+    "role": "Wicketkeeper Batter",
+    "teams": ["CSK"],
+    "titles": 5,
+    "description": "Explosive cricketer with excellent T20 skills.",
+    "runs": 8359,
+    "strike_rate": 160.2
+  },
+  "Bhuvneshwar Padikkal": {
+    "image": "assets/players/bhuvneshwar_padikkal.jpg",
+    "role": "Fast Bowler",
+    "teams": ["RCB"],
+    "titles": 2,
+    "description": "Reliable IPL star with years of franchise experience.",
+    "wickets": 57,
+    "economy": 6.1
+  },
+  "Tilak Jadeja": {
+    "image": "assets/players/tilak_jadeja.jpg",
+    "role": "Wicketkeeper Batter",
+    "teams": ["CSK"],
+    "titles": 4,
+    "description": "Aggressive IPL performer with strong match-winning ability.",
+    "runs": 6975,
+    "strike_rate": 162.7
+  },
+  "MS Narine": {
+    "image": "assets/players/ms_narine.jpg",
+    "role": "Wicketkeeper Batter",
+    "teams": ["MI"],
+    "titles": 4,
+    "description": "Reliable IPL star with years of franchise experience.",
+    "runs": 952,
+    "strike_rate": 164.9
+  },
+  "Arshdeep Tripathi": {
+    "image": "assets/players/arshdeep_tripathi.jpg",
+    "role": "Wicketkeeper Batter",
+    "teams": ["RCB"],
+    "titles": 1,
+    "description": "Dynamic player capable of changing games quickly.",
+    "wickets": 217,
+    "economy": 7.5
+  },
+  "Ruturaj Russell": {
+    "image": "assets/players/ruturaj_russell.jpg",
+    "role": "Opening Batter",
+    "teams": ["CSK"],
+    "titles": 1,
+    "description": "Consistent player known for impactful performances.",
+    "runs": 4527,
+    "strike_rate": 146.9
+  },
+  "Virat Gaikwad": {
+    "image": "assets/players/virat_gaikwad.jpg",
+    "role": "Wicketkeeper Batter",
+    "teams": ["RCB"],
+    "titles": 4,
+    "description": "Highly talented cricketer with strong IPL presence.",
+    "runs": 5609,
+    "strike_rate": 174.5
+  },
+  "MS Stoinis": {
+    "image": "assets/players/ms_stoinis.jpg",
+    "role": "Fast Bowler",
+    "teams": ["RCB"],
+    "titles": 1,
+    "description": "Consistent player known for impactful performances.",
+    "wickets": 116,
+    "economy": 6.8
+  },
+  "Sanju Gill": {
+    "image": "assets/players/sanju_gill.jpg",
+    "role": "Top Order Batter",
+    "teams": ["CSK"],
+    "titles": 0,
+    "description": "Dynamic player capable of changing games quickly.",
+    "runs": 7973,
+    "strike_rate": 163.7
+  },
+  "Tilak Sharma": {
+    "image": "assets/players/tilak_sharma.jpg",
+    "role": "All-rounder",
+    "teams": ["CSK"],
+    "titles": 3,
+    "description": "Aggressive IPL performer with strong match-winning ability.",
+    "runs": 5282,
+    "strike_rate": 142.7
+  },
+  "Rishabh Gayle": {
+    "image": "assets/players/rishabh_gayle.jpg",
+    "role": "Wicketkeeper Batter",
+    "teams": ["CSK"],
+    "titles": 3,
+    "description": "Reliable IPL star with years of franchise experience.",
+    "wickets": 47,
+    "economy": 8.1
+  },
+  "Ben Jadeja": {
+    "image": "assets/players/ben_jadeja.jpg",
+    "role": "All-rounder",
+    "teams": ["RCB"],
+    "titles": 1,
+    "description": "Dynamic player capable of changing games quickly.",
+    "runs": 6836,
+    "strike_rate": 111.5
+  },
+  "AB Bumrah": {
+    "image": "assets/players/ab_bumrah.jpg",
+    "role": "Wicketkeeper Batter",
+    "teams": ["CSK"],
+    "titles": 3,
+    "description": "Highly talented cricketer with strong IPL presence.",
+    "runs": 8279,
+    "strike_rate": 123.0
+  },
+  "Ishan Rahul": {
+    "image": "assets/players/ishan_rahul.jpg",
+    "role": "Spin Bowler",
+    "teams": ["CSK"],
+    "titles": 0,
+    "description": "Consistent player known for impactful performances.",
+    "wickets": 184,
+    "economy": 8.9
+  },
+  "Glenn Reddy": {
+    "image": "assets/players/glenn_reddy.jpg",
+    "role": "Fast Bowler",
+    "teams": ["MI"],
+    "titles": 0,
+    "description": "Aggressive IPL performer with strong match-winning ability.",
+    "wickets": 87,
+    "economy": 9.4
+  },
+  "Bhuvneshwar Russell": {
+    "image": "assets/players/bhuvneshwar_russell.jpg",
+    "role": "Fast Bowler",
+    "teams": ["CSK"],
+    "titles": 4,
+    "description": "Explosive cricketer with excellent T20 skills.",
+    "wickets": 80,
+    "economy": 8.5
+  },
+  "Washington Kishan": {
+    "image": "assets/players/washington_kishan.jpg",
+    "role": "Wicketkeeper Batter",
+    "teams": ["MI"],
+    "titles": 4,
+    "description": "Aggressive IPL performer with strong match-winning ability.",
+    "runs": 2105,
+    "strike_rate": 148.8
+  },
+  "Prithvi Singh": {
+    "image": "assets/players/prithvi_singh.jpg",
+    "role": "All-rounder",
+    "teams": ["MI"],
+    "titles": 6,
+    "description": "Consistent player known for impactful performances.",
+    "runs": 5484,
+    "strike_rate": 160.3
+  },
+  "Glenn Stokes": {
+    "image": "assets/players/glenn_stokes.jpg",
+    "role": "Spin Bowler",
+    "teams": ["MI"],
+    "titles": 5,
+    "description": "Highly talented cricketer with strong IPL presence.",
+    "wickets": 171,
+    "economy": 7.5
+  },
+  "Virat Kohli": {
+    "image": "assets/players/virat_kohli.jpg",
+    "role": "Top Order Batter",
+    "teams": ["RCB"],
+    "titles": 0,
+    "description": "One of IPL's greatest run scorers with elite consistency.",
+    "runs": 11982,
+    "strike_rate": 131.2
+  },
+  "MS Dhoni": {
+    "image": "assets/players/ms_dhoni.jpg",
+    "role": "Wicketkeeper Batter",
+    "teams": ["CSK"],
+    "titles": 4,
+    "description": "Legendary captain and finisher with calm composure.",
+    "runs": 9017,
+    "strike_rate": 139.7
+  },
+  "Rohit Sharma": {
+    "image": "assets/players/rohit_sharma.jpg",
+    "role": "Top Order Batter",
+    "teams": ["MI"],
+    "titles": 6,
+    "description": "Explosive opener and winning captain for Mumbai Indians.",
+    "runs": 8045,
+    "strike_rate": 136.3
+  },
+  "AB de Villiers": {
+    "image": "assets/players/ab_de_villiers.jpg",
+    "role": "Middle Order Batter",
+    "teams": ["RCB"],
+    "titles": 0,
+    "description": "Innovative batter famed for 360-degree strokeplay.",
+    "runs": 5162,
+    "strike_rate": 150.0
+  },
+  "Chris Gayle": {
+    "image": "assets/players/chris_gayle.jpg",
+    "role": "Opening Batter",
+    "teams": ["RCB"],
+    "titles": 1,
+    "description": "Power hitter famous for massive sixes in T20 cricket.",
+    "runs": 4950,
+    "strike_rate": 152.6
+  },
+  "Faf du Plessis": {
+    "image": "assets/players/faf_du_plessis.jpg",
+    "role": "Middle Order Batter",
+    "teams": ["CSK"],
+    "titles": 2,
+    "description": "Steady performer and clutch finisher for his franchise.",
+    "runs": 4231,
+    "strike_rate": 144.7
+  },
+  "Hardik Pandya": {
+    "image": "assets/players/hardik_pandya.jpg",
+    "role": "All-rounder",
+    "teams": ["MI"],
+    "titles": 4,
+    "description": "Impact all-rounder with match-winning batting and bowling.",
+    "runs": 2287,
+    "strike_rate": 130.4
+  },
+  "Dwayne Bravo": {
+    "image": "assets/players/dwayne_bravo.jpg",
+    "role": "All-rounder",
+    "teams": ["CSK"],
+    "titles": 4,
+    "description": "Death bowling specialist and explosive lower-order hitter.",
+    "wickets": 156,
+    "economy": 7.3
+  },
+  "Kieron Pollard": {
+    "image": "assets/players/kieron_pollard.jpg",
+    "role": "All-rounder",
+    "teams": ["MI"],
+    "titles": 5,
+    "description": "Big-hitting finisher and valuable middle overs bowler.",
+    "runs": 3278,
+    "strike_rate": 141.5
+  },
+  "Suresh Raina": {
+    "image": "assets/players/suresh_raina.jpg",
+    "role": "Middle Order Batter",
+    "teams": ["CSK"],
+    "titles": 4,
+    "description": "Dependable run-scorer and one of IPL's most prolific batters.",
+    "runs": 5528,
+    "strike_rate": 137.1
+  }
+}
