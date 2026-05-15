@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ipl-akinator
+    env: python
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: cd backend && uvicorn api:app --host 0.0.0.0 --port $PORT
+    pythonVersion: 3.11
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
