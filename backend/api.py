@@ -2,6 +2,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import json
 import random
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 from engine.bayesian_engine import initialize, update_probabilities
 from engine.entropy_selector import select_best_question
@@ -22,11 +28,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ===== GET BASE PATH =====
+BASE_DIR = Path(__file__).resolve().parent
+DATABASE_DIR = BASE_DIR / "database"
+
 # ===== LOAD DATA =====
-with open("database/players.json", "r", encoding="utf-8") as f:
+players_path = DATABASE_DIR / "players.json"
+profiles_path = DATABASE_DIR / "player_profiles.json"
+
+if not players_path.exists():
+    raise FileNotFoundError(f"Players database not found at {players_path}")
+if not profiles_path.exists():
+    raise FileNotFoundError(f"Player profiles database not found at {profiles_path}")
+
+with open(players_path, "r", encoding="utf-8") as f:
     players = json.load(f)
 
-with open("database/player_profiles.json", "r", encoding="utf-8") as f:
+with open(profiles_path, "r", encoding="utf-8") as f:
     player_profiles = json.load(f)
 
 # ===== STATE =====

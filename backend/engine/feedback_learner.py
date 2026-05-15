@@ -1,17 +1,19 @@
 import json
 import os
+from pathlib import Path
 
 
-LEARN_FILE = (
-    "database/learned_patterns.json"
-)
+# Get base directory for database files
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATABASE_DIR = BASE_DIR / "database"
+DATABASE_DIR.mkdir(parents=True, exist_ok=True)
+
+LEARN_FILE = DATABASE_DIR / "learned_patterns.json"
 
 
 def load_patterns():
 
-    if not os.path.exists(
-        LEARN_FILE
-    ):
+    if not LEARN_FILE.exists():
 
         return []
 
