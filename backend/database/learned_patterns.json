@@ -1,0 +1,62 @@
+[
+  {
+    "history": [
+      {
+        "question": "Is your player known for death overs bowling?",
+        "answer": "yes"
+      },
+      {
+        "question": "Is your player currently active in IPL?",
+        "answer": "no"
+      },
+      {
+        "question": "Is your player Indian?",
+        "answer": "dontknow"
+      },
+      {
+        "question": "Does your player have is_pacer?",
+        "answer": "maybe"
+      },
+      {
+        "question": "Is your player an all-rounder?",
+        "answer": "yes"
+      },
+      {
+        "question": "Has your player played for CSK?",
+        "answer": "yes"
+      },
+      {
+        "question": "Does your player have retired?",
+        "answer": "yes"
+      }
+    ],
+    "wrong_guess": "Tilak Jadeja",
+    "correct_player": "MS Dhoni"
+  },
+  {
+    "history": [
+      {
+        "question": "Has your player won the Purple Cap?",
+        "answer": "yes"
+      },
+      {
+        "question": "Does your player have right_handed?",
+        "answer": "no"
+      },
+      {
+        "question": "Is your player currently active in IPL?",
+        "answer": "no"
+      },
+      {
+        "question": "Is your player an all-rounder?",
+        "answer": "yes"
+      },
+      {
+        "question": "Does your player have is_spinner?",
+        "answer": "yes"
+      }
+    ],
+    "wrong_guess": "Tilak Sharma",
+    "correct_player": "Virat Kohli"
+  }
+]
